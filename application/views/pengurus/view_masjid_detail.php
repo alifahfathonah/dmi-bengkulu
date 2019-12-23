@@ -1,4 +1,4 @@
-<?php $this->load->view('admin/header'); ?>
+<?php $this->load->view('pengurus/header'); ?>
 
 	<!-- Breadcomb area Start-->
 	<div class="breadcomb-area">
@@ -65,7 +65,7 @@
                             <h2>Data Masjid</h2>
                         </div>
                         <div class="row">
-                            <form action="<?= base_url('admin/simpanmasjid') ?>" method="post" enctype="multipart/form-data">
+                            <form action="<?= base_url('pengurus/simpanmasjid') ?>" method="post" enctype="multipart/form-data">
                                 <div class="col-lg-6">
                                     <div class="form-example-int form-horizental">
                                         <div class="form-group">
@@ -329,7 +329,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <img src="<?= base_url('assets/masjid/galeri/'.$row->foto) ?>" alt="">
                                 <br><br>
-                                <a href="<?= base_url('admin/hapusgalerimasjid/'.$row->id_masjid.'/'.$row->id) ?>" class="pull-right btn btn-danger notika-btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus <i class="fa fa-trash"></i></a>
+                                <a href="<?= base_url('pengurus/hapusgalerimasjid/'.$row->id) ?>" class="pull-right btn btn-danger notika-btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus <i class="fa fa-trash"></i></a>
                                 <h5><?= $row->keterangan ?></h5>
                                 <p><?= $row->tag ?></p>
                                 <br>
@@ -340,7 +340,7 @@
                             <div class="modal fade" id="myModalone" role="dialog">
                                 <div class="modal-dialog modals-default">
                                     <div class="modal-content">
-                                        <form action="<?= base_url('admin/simpangalerimasjid') ?>" method="post" enctype="multipart/form-data">  
+                                        <form action="<?= base_url('pengurus/simpangalerimasjid') ?>" method="post" enctype="multipart/form-data">  
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
@@ -429,7 +429,7 @@
                             <div class="modal fade" id="myModaltwo" role="dialog">
                                 <div class="modal-dialog modals-default">
                                     <div class="modal-content">
-                                        <form action="<?= base_url('admin/simpankegiatanmasjid') ?>" method="post" enctype="multipart/form-data">  
+                                        <form action="<?= base_url('pengurus/simpankegiatanmasjid') ?>" method="post" enctype="multipart/form-data">  
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
@@ -527,7 +527,7 @@
                                         <td><?= $row->keterangan ?></td>
                                         <td><img style="height: 100px" src="<?= base_url('assets/masjid/kegiatan/'.$row->foto) ?>"></td>
                                         <td>
-                                            <a href="<?= base_url('admin/hapuskegiatanmasjid/'.$masjid->id_masjid.'/'.$row->id) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
+                                            <a href="<?= base_url('pengurus/hapuskegiatanmasjid/'.$row->id) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -563,7 +563,7 @@
                             <div class="modal fade" id="myModalthree" role="dialog">
                                 <div class="modal-dialog modals-default">
                                     <div class="modal-content">
-                                        <form action="<?= base_url('admin/simpankeuanganmasjid') ?>" method="post">  
+                                        <form action="<?= base_url('pengurus/simpankeuanganmasjid') ?>" method="post">  
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
@@ -668,7 +668,7 @@
                                                     else{ $saldo-=$row->jumlah_uang; }
                                                     echo $saldo; ?></td>
                                         <td>
-                                            <a href="<?= base_url('admin/hapuskeuanganmasjid/'.$masjid->id_masjid.'/'.$row->id) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
+                                            <a href="<?= base_url('pengurus/hapuskeuanganmasjid/'.$row->id) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -694,4 +694,4 @@
 
     <?php } ?>
 
-<?php $this->load->view('admin/footer'); ?>
+<?php $this->load->view('pengurus/footer'); ?>

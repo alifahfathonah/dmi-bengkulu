@@ -35,13 +35,27 @@ class Admin extends CI_Controller {
 	}
 
 	public function simpanSejarahGambar(){
-		$config['upload_path']   = './assets/profil/team/';
-        $config['allowed_types'] = 'jpg|png';
+		$config['upload_path']   = './assets/profil/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size']      = 5000;
         $this->load->library('upload', $config);
-	    if ($this->upload->do_upload('croppedImage')){
+	    if ($this->upload->do_upload('sejarah_foto')){
 	        $data['sejarah_foto'] = $this->upload->file_name;
+			$where['id'] = 0;
+			$profilBeforeUpdate = $this->AdminModel->getWhere('tb_profil_dmi', $where)->row();
+			$fotolama='./assets/profil/'.$profilBeforeUpdate->sejarah_foto;
+			$update=$this->AdminModel->update('tb_profil_dmi', $data, $where);
+			if($update){
+				unlink($fotolama);
+				$this->session->set_flashdata('success', 'Berhasil mengubah gambar');
+			}else{
+				unlink('./assets/profil/'.$data['sejarah_foto']);
+				$this->session->set_flashdata('error', 'Gagal mengubah gambar');
+			}
+	    }else{
+	    	$this->session->set_flashdata('error', 'Gagal mengubah gambar. Pastikan kuran file maksimal foto 5MB dan berekstensi .jpg atau .png');
 	    }
+		redirect(base_url('admin/profildmi'));
 	}
 
 	public function simpanSejarahTeks(){
@@ -97,7 +111,7 @@ class Admin extends CI_Controller {
 		$data['jabatan'] = $this->input->post('jabatan');
 
 		$config['upload_path']   = './assets/profil/team/';
-        $config['allowed_types'] = 'jpg|png';
+        $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size']      = 2000;
         $this->load->library('upload', $config);
 	    if ($this->upload->do_upload('foto_pengurus')){
@@ -106,7 +120,7 @@ class Admin extends CI_Controller {
 			if($insert){
 				$this->session->set_flashdata('success', 'Berhasil menambah pengurus');
 			}else{
-				if($uploadsucces) unlink('./assets/profil/team/'.$data['foto']);
+				unlink('./assets/profil/team/'.$data['foto']);
 				$this->session->set_flashdata('error', 'Gagal menambah pengurus');
 			}
 	    }else{
@@ -142,6 +156,30 @@ class Admin extends CI_Controller {
 		}else{
 			$this->session->set_flashdata('error', 'Gagal mengubah kontak');
 		}
+		redirect(base_url('admin/profildmi#kontak'));
+	}
+
+	public function simpanLogo(){
+		$config['upload_path']   = './assets/profil/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size']      = 2000;
+        $this->load->library('upload', $config);
+	    if ($this->upload->do_upload('logo')){
+	        $data['logo'] = $this->upload->file_name;
+			$where['id'] = 0;
+			$profilBeforeUpdate = $this->AdminModel->getWhere('tb_profil_dmi', $where)->row();
+			$fotolama='./assets/profil/'.$profilBeforeUpdate->logo;
+			$update=$this->AdminModel->update('tb_profil_dmi', $data, $where);;
+			if($update){
+				unlink($fotolama);
+				$this->session->set_flashdata('success', 'Berhasil mengubah gambar');
+			}else{
+				unlink('./assets/profil/'.$data['logo']);
+				$this->session->set_flashdata('error', 'Gagal mengubah gambar');
+			}
+	    }else{
+	    	$this->session->set_flashdata('error', 'Gagal mengubah gambar. Pastikan kuran file maksimal foto 2MB dan berekstensi .jpg atau .png');
+	    }
 		redirect(base_url('admin/profildmi#kontak'));
 	}
 
@@ -181,7 +219,7 @@ class Admin extends CI_Controller {
 		$data['deskripsi'] = $this->input->post('deskripsi');
 
 		$config['upload_path']   = './assets/masjid/';
-        $config['allowed_types'] = 'jpg|png';
+        $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size']      = 5000;
         $this->load->library('upload', $config);
 	    if ($this->upload->do_upload('foto_sampul')){
@@ -209,7 +247,7 @@ class Admin extends CI_Controller {
 				if($uploadsucces) unlink($fotolama);
 				$this->session->set_flashdata('success', 'Berhasil mengubah masjid');
 			}else{
-				if($uploadsucces) unlink($data['foto']);
+				if($uploadsucces) unlink('./assets/masjid/'.$data['foto']);
 				$this->session->set_flashdata('success', 'Berhasil mengubah masjid');
 			}
 	    	redirect(base_url('admin/detailMasjid/'.$id_masjid));
@@ -238,7 +276,7 @@ class Admin extends CI_Controller {
 		$data['tag'] = $this->input->post('tag');
 
 		$config['upload_path']   = './assets/masjid/galeri/';
-        $config['allowed_types'] = 'jpg|png';
+        $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size']      = 2000;
         $this->load->library('upload', $config);
 	    if ($this->upload->do_upload('foto_galeri')){
@@ -247,7 +285,7 @@ class Admin extends CI_Controller {
 			if($insert){
 				$this->session->set_flashdata('success', 'Berhasil menambah galeri masjid');
 			}else{
-				if($uploadsucces) unlink('./assets/masjid/galeri/'.$data['foto']);
+				unlink('./assets/masjid/galeri/'.$data['foto']);
 				$this->session->set_flashdata('error', 'Gagal menambah galeri masjid');
 			}
 	    }else{
@@ -279,7 +317,7 @@ class Admin extends CI_Controller {
 		$data['id_user_penulis'] = $this->session->userdata('id_user');
 
 		$config['upload_path']   = './assets/masjid/kegiatan/';
-        $config['allowed_types'] = 'jpg|png';
+        $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size']      = 2000;
         $this->load->library('upload', $config);
 	    if ($this->upload->do_upload('foto_kegiatan')){
@@ -287,6 +325,7 @@ class Admin extends CI_Controller {
 	        $uploadsucces = TRUE;
 	    }else{
 	    	$uploadsucces = FALSE;
+	    	$this->session->set_flashdata('info', 'Gagal upload gambar. Pastikan ukuran file gambar maskimal 5MB dan file berekstensi .png/.jpg');
 	    }
 
 		$insert=$this->AdminModel->insert('tb_kegiatan_masjid', $data);
@@ -360,39 +399,42 @@ class Admin extends CI_Controller {
 		$id = $this->input->post('id');
 		$data['judul'] = $this->input->post('judul');
 		$data['kategori'] = $this->input->post('kategori');
+		$data['deskripsi_singkat'] = $this->input->post('deskripsi_singkat');
 		$data['isi'] = $this->input->post('isi');
 		$data['id_user_penulis'] = $this->session->userdata('id_user');
 
-		// $config['upload_path']   = './assets/berita/';
-  //       $config['allowed_types'] = 'jpg|png';
-  //       $config['max_size']      = 2000;
-  //       $this->load->library('upload', $config);
-	 //    if ($this->upload->do_upload('foto_kegiatan')){
-	 //        $data['foto'] = $this->upload->file_name;
-	 //        $uploadsucces = TRUE;
-	 //    }else{
-	 //    	$uploadsucces = FALSE;
-	 //    }
+		$config['upload_path']   = './assets/berita/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size']      = 5000;
+        $this->load->library('upload', $config);
+	    if ($this->upload->do_upload('foto')){
+	        $data['foto'] = $this->upload->file_name;
+	        $uploadsucces = TRUE;
+	    }else{
+	    	$uploadsucces = FALSE;
+	    	$this->session->set_flashdata('info', 'Gagal upload gambar. Pastikan ukuran file gambar maskimal 5MB dan file berekstensi .png/.jpg');
+	    }
 
 	    if(empty($id)){
 	    	$insert = $this->AdminModel->insert('tb_khutbah', $data);
 	    	if($insert){
 	    		$this->session->set_flashdata('success', 'Berhasil tambah berita');
 	    	}else{
+	    		if($uploadsucces) unlink('./assets/berita/'.$data['foto']);
 	    		$this->session->set_flashdata('error', 'Gagal tambah berita');
 	    	}
 	    	redirect(base_url('admin/berita'));
 
 	    }else{
 			$where['id'] = $id;
-			// $beritaBeforeUpdate = $this->AdminModel->getWhere('tb_khutbah', $where)->row();
-			// $fotolama='./assets/masjid/'.$beritaBeforeUpdate->foto;
+			$beritaBeforeUpdate = $this->AdminModel->getWhere('tb_khutbah', $where)->row();
+			$fotolama='./assets/berita/'.$beritaBeforeUpdate->foto;
 			$update = $this->AdminModel->update('tb_khutbah', $data, $where);
 			if($update){
-				// if($uploadsucces) unlink($fotolama);
+				if($uploadsucces) unlink($fotolama);
 				$this->session->set_flashdata('success', 'Berhasil mengubah berita');
 			}else{
-				// if($uploadsucces) unlink($data['foto']);
+				if($uploadsucces) unlink('./assets/berita/'.$data['foto']);
 				$this->session->set_flashdata('success', 'Berhasil mengubah berita');
 			}
 	    	redirect(base_url('admin/detailBerita/'.$id));
@@ -417,18 +459,19 @@ class Admin extends CI_Controller {
 	public function pengguna()
 	{
 		$data['menu'] = 'pengguna';
-		$data['user'] = $this->AdminModel->get('tb_user');
+		$data['user'] = $this->AdminModel->getAllPengguna();
+		$data['masjid'] = $this->AdminModel->get('tb_masjid', 'id_masjid, nama');
 		$this->load->view('admin/view_pengguna', $data);
 	}
 
 	public function simpanPengguna(){
+		$id_user = $this->input->post('id_user');
 		$data['nama'] = $this->input->post('nama');
 		$data['email'] = $this->input->post('email');
-		$data['password'] = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
 		$data['level'] = $this->input->post('level');
 
 		$config['upload_path']   = './assets/user/';
-        $config['allowed_types'] = 'jpg|png';
+        $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size']      = 2000;
         $this->load->library('upload', $config);
 	    if ($this->upload->do_upload('foto_pengguna')){
@@ -436,28 +479,79 @@ class Admin extends CI_Controller {
 	        $uploadsucces = TRUE;
 	    }else{
 	    	$uploadsucces = FALSE;
+	    	$this->session->set_flashdata('info', 'Gagal upload gambar. Pastikan ukuran file gambar maskimal 2MB dan file berekstensi .png/.jpg');
 	    }
 
-		$insert=$this->AdminModel->insert('tb_user', $data);
-		if($insert){
-			$this->session->set_flashdata('success', 'Berhasil menambah pengguna');
+	    if(empty($id_user)){
+			$data['password'] = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
+			$insert=$this->AdminModel->insert('tb_user', $data);
+			if($insert){
+				$this->session->set_flashdata('success', 'Berhasil menambah pengguna');
+			}else{
+				if($uploadsucces) unlink('./assets/user/'.$data['foto']);
+				$this->session->set_flashdata('error', 'Gagal menambah pengguna');
+			}
 		}else{
-			if($uploadsucces) unlink('./assets/user/'.$data['foto']);
-			$this->session->set_flashdata('error', 'Gagal menambah pengguna');
+			$where['id_user'] = $id_user;
+			$userBeforeUpdate = $this->AdminModel->getWhere('tb_user', $where)->row();
+			$fotolama='./assets/user/'.$userBeforeUpdate->foto;
+			$update = $this->AdminModel->update('tb_user', $data, $where);
+			if($update){
+				if($uploadsucces) unlink($fotolama);
+				$this->session->set_flashdata('success', 'Berhasil mengubah pengguna');
+			}else{
+				if($uploadsucces) unlink('./assets/user/'.$data['foto']);
+				$this->session->set_flashdata('error', 'Gagal mengubah pengguna');
+			}
+		}
+		redirect(base_url('admin/pengguna'));
+	}
+
+	public function ubahPassword(){
+		$data['password'] = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
+		$where['id_user'] = $this->input->post('id_user');
+		$update = $this->AdminModel->update('tb_user', $data, $where);
+		if($update){
+			$this->session->set_flashdata('success', 'Berhasil mengubah password');
+		}else{
+			$this->session->set_flashdata('error', 'Gagal mengubah password');
+		}
+		redirect(base_url('admin/pengguna'));
+	}
+
+	public function pengurusTambahMasjid(){
+		$data['id_masjid'] = $this->input->post('id_masjid');
+		$where['id_user_pengurus'] = $this->input->post('id_user');
+		$check = $this->AdminModel->getWhere('tb_pengurus_masjid', $where);
+		if($check->num_rows()==0){
+			$data['id_user_pengurus'] = $this->input->post('id_user');
+			$insert = $this->AdminModel->insert('tb_pengurus_masjid', $data);
+			if($insert){
+				$this->session->set_flashdata('success', 'Berhasil mengubah pengguna');
+			}else{
+				$this->session->set_flashdata('error', 'Gagal mengubah pengguna');
+			}
+		}else{
+			$update = $this->AdminModel->update('tb_pengurus_masjid', $data, $where);
+			if($update){
+				$this->session->set_flashdata('success', 'Berhasil mengubah pengguna');
+			}else{
+				$this->session->set_flashdata('error', 'Gagal mengubah pengguna');
+			}
 		}
 		redirect(base_url('admin/pengguna'));
 	}
 
 	public function hapusPengguna($id_user){
 		$where['id_user'] = $id_user;
-		// $userBeforeUpdate = $this->AdminModel->getWhere('tb_user', $where)->row();
-		// $fotolama='./assets/user/'.$userBeforeUpdate->foto;
+		$userBeforeUpdate = $this->AdminModel->getWhere('tb_user', $where)->row();
+		$fotolama='./assets/user/'.$userBeforeUpdate->foto;
 		$delete = $this->AdminModel->delete('tb_user', $where);
 		if($delete){
-			//unlink($fotolama);
-			$this->session->set_flashdata('success', 'Berhasil menghapus');
+			unlink($fotolama);
+			$this->session->set_flashdata('success', 'Berhasil menghapus pengguna');
 		}else{
-			$this->session->set_flashdata('error', 'Gagal menghapus');
+			$this->session->set_flashdata('error', 'Gagal menghapus pengguna');
 		}
 		redirect(base_url('admin/pengguna'));
 	}

@@ -60,7 +60,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="image-cropper-wp">
+                    <!-- <div class="image-cropper-wp">
                         <div class="row">
                         	<div class="col-lg-12">
                         		<h4>Gambar untuk sejarah</h4>
@@ -99,7 +99,26 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
+                    <img src="<?= base_url('assets/profil/'.$profil->sejarah_foto) ?>">
+                    <form action="<?= base_url('admin/simpansejarahgambar') ?>" method="post" enctype="multipart/form-data">
+                        <div class="form-example-wrap">
+                            <div class="cmp-tb-hd">
+                                <h2>Gambar untuk Sejarah</h2>
+                            </div>
+                            <div class="form-example-int">
+                                <div class="form-group">
+                                    <div class="nk-int-st">
+                                        <input type="file" name="sejarah_foto" class="form-control input-sm" placeholder="Upload file untuk ganti gambar">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-example-int mg-t-15">
+                                <button type="submit" class="btn btn-success notika-btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <form action="<?= base_url('admin/simpansejarahteks') ?>" method="post">
@@ -401,57 +420,25 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="form-example-wrap">
-                        <div class="cmp-tb-hd">
-                            <h2>Kontak</h2>
-                        </div>
-                        <form action="<?= base_url('admin/simpankontak') ?>" method="post">
-                            <div class="form-example-int">
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <div class="nk-int-st">
-                                        <input name="email" type="text" class="form-control input-sm" placeholder="Ketik Email" value="<?= $profil->email ?>">
-                                    </div>
-                                </div>
+                    <form action="<?= base_url('admin/simpanlogo') ?>" method="post" enctype="multipart/form-data">
+                        <div class="form-example-wrap">
+                            <img style="height: 100px" src="<?= base_url('assets/profil/'.$profil->logo) ?>">
+                            <br><br>
+                            <div class="cmp-tb-hd">
+                                <h2>Logo</h2>
                             </div>
                             <div class="form-example-int">
                                 <div class="form-group">
-                                    <label>Telpon</label>
                                     <div class="nk-int-st">
-                                        <input name="telpon" type="number" class="form-control input-sm" placeholder="Ketik Telpon" value="<?= $profil->telpon ?>">
+                                        <input type="file" name="logo" class="form-control input-sm" placeholder="Upload file untuk ganti gambar">
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-example-int">
-                                <div class="form-group">
-                                    <label>Alamat</label>
-                                    <div class="nk-int-st">
-                                        <textarea name="alamat" class="form-control auto-size" rows="2" placeholder="Tulis Alamat"><?= $profil->alamat ?></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-example-int">
-                                <div class="form-group">
-                                    <label>Koordinat</label>
-                                    <div class="row">
-                                    <div class="col-lg-6">
-                                    <div class="nk-int-st">
-                                        <input name="lat" type="text" class="form-control input-sm" placeholder="Ketik Latitude" value="<?= $profil->lat ?>">
-                                    </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                    <div class="nk-int-st">
-                                        <input name="lng" type="text" class="form-control input-sm" placeholder="Ketik Longitude" value="<?= $profil->lng ?>">
-                                    </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-example-int">
+                            <div class="form-example-int mg-t-15">
                                 <button type="submit" class="btn btn-success notika-btn-success">Submit</button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

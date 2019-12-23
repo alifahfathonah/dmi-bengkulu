@@ -40,7 +40,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="single-blog">
                 <div class="single-blog-img">
-                  <a href="#">
+                  <a href="<?= base_url('welcome/detailmasjid/'.$row->id_masjid) ?>">
                       <img src="<?= base_url('assets/masjid/'.$row->foto) ?>" alt="">
                     </a>
                 </div>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="blog-text">
                   <h4>
-                      <a href="#"><?= $row->nama ?></a>
+                      <a href="<?= base_url('welcome/detailmasjid/'.$row->id_masjid) ?>"><?= $row->nama ?></a>
                     </h4>
                   <p>
                     <b>Alamat :</b> <?= $row->alamat ?>.

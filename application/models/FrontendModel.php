@@ -41,7 +41,7 @@ class FrontendModel extends CI_Model {
 	}
 
 	public function getBeritaTerbaru($limit){
-		$this->db->select('id, judul, tgl_dibuat, SUBSTRING(isi, 1, 500) AS isi, foto');
+		$this->db->select('id, judul, tgl_dibuat, deskripsi_singkat AS isi, foto');
 		$this->db->where('kategori', 'Berita');
 		$this->db->order_by('tgl_dibuat', 'DESC');
 		$this->db->limit($limit);
@@ -60,13 +60,13 @@ class FrontendModel extends CI_Model {
 	}
 
 	public function getBaca(){
-		$this->db->select('id, judul, tgl_dibuat, SUBSTRING(isi, 1, 500) AS isi, foto');
+		$this->db->select('id, judul, tgl_dibuat, deskripsi_singkat AS isi, foto');
 		$this->db->order_by('tgl_dibuat', 'DESC');
 		return $this->db->get('tb_khutbah');
 	}
 
 	public function getBacaByKategori($kategori){
-		$this->db->select('id, judul, tgl_dibuat, SUBSTRING(isi, 1, 500) AS isi, foto');
+		$this->db->select('id, judul, tgl_dibuat, deskripsi_singkat AS isi, foto');
 		$this->db->where('kategori', $kategori);
 		$this->db->order_by('tgl_dibuat', 'DESC');
 		return $this->db->get('tb_khutbah');

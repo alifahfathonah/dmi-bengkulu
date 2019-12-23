@@ -16,6 +16,16 @@
               <!-- search option end -->
             </div>
             <div class="single-blog-page">
+              <div class="left-blog">
+                <h4>Jadwal Sholat Hari Ini</h4>
+                <!--start code Widget Jadwal Shalat wilayah (KOTA BENGKULU/BENGKULU) -->
+                <p style="text-align: center;">
+                  <iframe src="https://www.jadwalsholat.org/adzan/ajax.row.php?id=38" frameborder="0" width="220" height="220"></iframe>
+                </p>
+                <!--end code Widget Jadwal Shalat -->
+              </div>
+            </div>
+            <div class="single-blog-page">
               <!-- recent start -->
               <div class="left-blog">
                 <h4>post terbaru</h4>

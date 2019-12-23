@@ -72,6 +72,13 @@ class Welcome extends CI_Controller {
 	public function baca($kategori=NULL)
 	{
 		header("Access-Control-Allow-Origin: *");
+		if($kategori=="adha"){
+			$kategori = "Khutbah Idul Adha";
+		}elseif($kategori=="fitri"){
+			$kategori = "Khutbah Idul Fitri";
+		}elseif($kategori=="jumat"){
+			$kategori = "Khutbah Jumat";
+		}
 		$data['profil'] = $this->FrontendModel->get('tb_profil_dmi')->row();
 		$data['menu'] = 'khutbah';
 		$data['kategori'] = $kategori;
@@ -94,6 +101,15 @@ class Welcome extends CI_Controller {
 		$data['post_terbaru'] = $this->FrontendModel->getBeritaTerbaru(5);
 		$data['arsip'] = $this->FrontendModel->getArsip();
 		$this->load->view('frontend/view_baca_full', $data);
+	}
+
+	public function jadwalSholat(){
+		header("Access-Control-Allow-Origin: *");
+		$data['profil'] = $this->FrontendModel->get('tb_profil_dmi')->row();
+		$data['menu'] = 'jadwalsholat';
+		$data['post_terbaru'] = $this->FrontendModel->getBeritaTerbaru(5);
+		$data['arsip'] = $this->FrontendModel->getArsip();
+		$this->load->view('frontend/view_jadwal_sholat', $data);
 	}
 
 	public function downloadPDF($id_khutbah){

@@ -9,10 +9,10 @@
           <div class="slider-content text-center">
             <div class="header-bottom">
               <div class="layer2 wow zoomIn" data-wow-duration="1s" data-wow-delay=".4s">
-                <h1 class="title2"><?= $baca->judul ?></h1>
+                <h1 class="title2">Jadwal Sholat Bulan Ini</h1>
               </div>
               <div class="layer3 wow zoomInUp" data-wow-duration="2s" data-wow-delay="1s">
-                <h2 class="title3">Sarana Publikasi dari DMI</h2>
+                <h2 class="title3">Daerah Kota Bengkulu</h2>
               </div>
             </div>
           </div>
@@ -30,24 +30,9 @@
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <!-- single-blog start -->
-              <article class="blog-post-wrapper">
-                <div class="post-thumbnail">
-                  <img src="<?= base_url('assets/berita/'.$baca->foto) ?>" alt="" />
-                </div>
-                <div class="post-information">
-                  <h2><?= $baca->judul ?></h2>
-                  <div class="entry-meta">
-                    <span class="author-meta"><i class="fa fa-user"></i> <a href="#"><?= $baca->nama_penulis ?></a></span>
-                    <span><i class="fa fa-clock-o"></i> <?= date('d-m-Y H:i:s', strtotime($baca->tgl_dibuat)) ?></span>
-                    <a href="<?= base_url('welcome/downloadpdf/'.$baca->id) ?>" class="pull-right btn btn-default"><i class="fa fa-print"></i> Download PDF</a>
-                  </div>
-                  <div class="entry-content">
-                    <?= $baca->isi ?>
-                  </div>
-                </div>
-              </article>
+              <p style="text-align: center;"><iframe src="https://www.jadwalsholat.org/adzan/monthly.php?id=38" width="430" height="940" frameborder="0"></iframe></p>
+              <p style="text-align: center;">*Jadwal Sholat diambil dari <a href="https://www.jadwalsholat.org">jadwalsholat.org</a></p>
               <!-- single-blog end -->
-
             </div>
           </div>
         </div>

@@ -86,7 +86,8 @@
                       <li><a href="<?= base_url('welcome/masjid/agung') ?>" >Masjid Agung</a></li>
                       <li><a href="<?= base_url('welcome/masjid/besar') ?>" >Masjid Besar</a></li>
                       <li><a href="<?= base_url('welcome/masjid/jami') ?>" >Masjid Jami</a></li>
-                      <li><a href="<?= base_url('welcome/masjid/umum') ?>" >Masjid Umum</a></li>
+                      <li><a href="<?= base_url('welcome/masjid/bersejarah') ?>" >Masjid Bersejarah</a></li>
+                      <li><a href="<?= base_url('welcome/masjid/publik') ?>" >Masjid di Tempat Publik</a></li>
                       <li><a href="<?= base_url('welcome/mushola') ?>" >Mushola</a></li>
                     </ul> 
                   </li>
@@ -98,6 +99,9 @@
                       <li><a href="<?= base_url('welcome/baca/fitri') ?>" >Khutbah Idul Fitri</a></li>
                       <li><a href="<?= base_url('welcome/baca/adha') ?>" >Khutbah Idul Adha</a></li>
                     </ul> 
+                  </li>
+                  <li class="<?php if($menu=="jadwalsholat") echo 'active' ?>">
+                    <a href="<?= base_url('welcome/jadwalsholat') ?>">Jadwal Sholat</a>
                   </li>
                   <li>
                     <a href="<?= base_url('auth') ?>">Login</a>

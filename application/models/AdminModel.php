@@ -57,4 +57,12 @@ class AdminModel extends CI_Model {
 		$this->db->order_by('tgl_dibuat', 'DESC');
 		return $this->db->get();
 	}
+
+	public function getAllPengguna(){
+		$this->db->select('tb_user.*, id_masjid');
+		$this->db->from('tb_user');
+		$this->db->join('tb_pengurus_masjid', 'tb_user.id_user=tb_pengurus_masjid.id_user_pengurus', 'left');
+		$this->db->order_by('level');
+		return $this->db->get();
+	}
 }

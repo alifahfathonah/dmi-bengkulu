@@ -36,49 +36,41 @@
           </div>
           <table>
             <tbody>
-            
               <tr>
                 <th style="width:30%;">Luas Tanah</th>
                 <th style="width: 1%;">:</th>
                 <td><?= $masjid->luas_tanah ?> m<sup>2</sup></td>
-              </tr>
-                        
+              </tr>   
               <tr>
                 <th>Luas Bangunan</th>
                 <th>:</th>
                 <td><?= $masjid->luas_bangunan ?> m<sup>2</sup></td>
-              </tr>
-                        
+              </tr>  
               <tr>
                 <th>Tahun Berdiri</th>
                 <th>:</th>
                 <td><?= $masjid->tahun_berdiri ?></td>
-              </tr>
-                        
+              </tr>  
               <tr>
                 <th>Daya Tampung Jamaah</th>
                 <th>:</th>
                 <td><?= $masjid->daya_tampung_jamaah ?></td>
-              </tr>
-                        
-              <tr>
-                <th valign="top">Fasilitas</th>
-                <th valign="top">:</th>
-                <td valign="top"><?= $masjid->fasilitas ?></td>
-              </tr>
-                        
-              <tr>
-                <th valign="top">Kegiatan</th>
-                <th valign="top">:</th>
-                <td valign="top"><?= $masjid->kegiatan ?></td>
-              </tr>
-                        
+              </tr>  
               <tr>
                 <th>Jumlah Pengurus</th>
                 <th>:</th>
                 <td><?= $masjid->jumlah_pengurus ?></td>
               </tr>
-                        
+              <tr>
+                <th valign="top">Fasilitas</th>
+                <th valign="top">:</th>
+                <td valign="top"><?= $masjid->fasilitas ?></td>
+              </tr> 
+              <tr>
+                <th valign="top">Kegiatan</th>
+                <th valign="top">:</th>
+                <td valign="top"><?= $masjid->kegiatan ?></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -95,8 +87,43 @@
   </div>
   <!-- End Blog Area -->
 
+  <!-- Start About area -->
+  <div id="sejarah" class="about-area area-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline text-center">
+            <h2>Deskripsi</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- single-well start-->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="well-left">
+            <div class="single-well">
+              <a href="#">
+                  <img src="<?= base_url('assets/masjid/'.$masjid->foto) ?>" alt="">
+                </a>
+            </div>
+          </div>
+        </div>
+        <!-- single-well end-->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="well-middle">
+            <div class="single-well">
+              <?= $masjid->deskripsi; ?>
+            </div>
+          </div>
+        </div>
+        <!-- End col-->
+      </div>
+    </div>
+  </div>
+  <!-- End About area -->
+
   <!-- Start portfolio Area -->
-  <div id="portfolio" class="about-area area-padding fix">
+  <div id="portfolio" class="blog-area area-padding">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -113,9 +140,6 @@
               <ul class="project-menu">
                 <li>
                   <a href="#" class="active" data-filter="*">All</a>
-                </li>
-                <li>
-                  <a href="#" data-filter=".Sampul">Foto Sampul</a>
                 </li>
                 <li>
                   <a href="#" data-filter=".Depan">Tampak Depan</a>
@@ -135,28 +159,14 @@
         </div>
         <div class="awesome-project-content">
           <!-- single-awesome-project start -->
-          <div class="col-md-4 col-sm-4 col-xs-12 design Sampul">
-            <div class="single-awesome-project">
-              <div class="awesome-img">
-                <a href="#"><img src="<?= base_url('assets/masjid/'.$masjid->foto) ?>" alt="" /></a>
-                <div class="add-actions text-center">
-                  <div class="project-dec">
-                    <a class="venobox" data-gall="myGallery" href="<?= base_url('ebusiness/img/portfolio/'.$masjid->foto) ?>">
-                      <h4><?= "Foto Sampul" ?></h4>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <?php foreach($galeri->result() as $row){ ?>
           <div class="col-md-4 col-sm-4 col-xs-12 design <?= $row->tag ?>">
             <div class="single-awesome-project">
               <div class="awesome-img">
-                <a href="#"><img src="<?= base_url('assets/masjid/'.$row->foto) ?>" alt="" /></a>
+                <a href="#"><img src="<?= base_url('assets/masjid/galeri/'.$row->foto) ?>" alt="" /></a>
                 <div class="add-actions text-center">
                   <div class="project-dec">
-                    <a class="venobox" data-gall="myGallery" href="<?= base_url('assets/masjid/'.$row->foto) ?>">
+                    <a class="venobox" data-gall="myGallery" href="<?= base_url('assets/masjid/galeri/'.$row->foto) ?>">
                       <h4><?= $row->keterangan ?></h4>
                     </a>
                   </div>
@@ -173,7 +183,7 @@
   <!-- awesome-portfolio end -->
 
   <!-- Start Blog Area -->
-  <div id="berita" class="blog-area">
+  <div id="berita" class="about-area area-padding">
     <div class="blog-inner area-padding">
       <div class="blog-overly"></div>
       <div class="container ">
@@ -219,7 +229,7 @@
   <!-- End Blog -->
 
   <!-- Start Blog Area -->
-  <div id="berita" class="about-area">
+  <div id="berita" class="blog-area  area-padding">
     <div class="blog-inner area-padding">
       <div class="blog-overly"></div>
       <div class="container ">

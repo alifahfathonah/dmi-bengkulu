@@ -116,7 +116,7 @@
                                         <?php } ?>
                                     </div>
                                     <div class="hd-mg-va">
-                                        <a href="<?= base_url('admin/pesan') ?>">Lihat Semua</a>
+                                        <a href="<?= base_url('ustadz/pesan') ?>">Lihat Semua</a>
                                     </div>
                                 </div>
                             </li>
@@ -165,11 +165,7 @@
                     <div class="mobile-menu">
                         <nav id="dropdown">
                             <ul class="mobile-menu-nav">
-                                <li><a href="<?= base_url('admin') ?>">Dashboard</a></li>
-                                <li><a href="<?= base_url('admin/profildmi') ?>">Profil DMI</a></li>
-                                <li><a href="<?= base_url('admin/masjid') ?>">Manajemen Masjid</a></li>
-                                <li><a href="<?= base_url('admin/berita') ?>">Manajemen Berita</a></li>
-                                <li><a href="<?= base_url('admin/pengguna') ?>">Manajemen Pengguna</a></li>
+                                <li><a href="<?= base_url('ustadz') ?>">Manajemen Khutbah</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -184,15 +180,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                        <li <?php if($menu=="dashboard") echo 'class="active"' ?>><a href="<?= base_url('admin') ?>"><i class="notika-icon notika-house"></i> Dashboard</a>
-                        </li>
-                        <li <?php if($menu=="profildmi") echo 'class="active"' ?>><a href="<?= base_url('admin/profildmi') ?>"><i class="notika-icon notika-edit"></i> Profil DMI</a>
-                        </li>
-                        <li <?php if($menu=="masjid") echo 'class="active"' ?>><a href="<?= base_url('admin/masjid') ?>"><i class="notika-icon notika-windows"></i> Manajemen Masjid</a>
-                        </li>
-                        <li <?php if($menu=="berita") echo 'class="active"' ?>><a href="<?= base_url('admin/berita') ?>"><i class="notika-icon notika-form"></i> Manajemen Berita</a>
-                        </li>
-                        <li <?php if($menu=="pengguna") echo 'class="active"' ?>><a href="<?= base_url('admin/pengguna') ?>"><i class="notika-icon notika-support"></i> Manajemen Pengguna</a>
+                        <li <?php if($menu=="berita") echo 'class="active"' ?>><a href="<?= base_url('ustadz') ?>"><i class="notika-icon notika-form"></i> Manajemen Khutbah</a>
                         </li>
                     </ul>
                 </div>
@@ -204,7 +192,7 @@
     <div class="modal fade" id="myModalubahpassword" role="dialog">
         <div class="modal-dialog modals-default">
             <div class="modal-content">
-                <form action="<?= base_url('admin/ubahpassword') ?>" method="post">  
+                <form action="<?= base_url('ustadz/ubahpassword') ?>" method="post">  
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>

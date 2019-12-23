@@ -1,4 +1,4 @@
-<?php $this->load->view('admin/header'); ?>
+<?php $this->load->view('ustadz/header'); ?>
 
 	<!-- Breadcomb area Start-->
 	<div class="breadcomb-area">
@@ -13,7 +13,7 @@
 										<i class="notika-icon notika-windows"></i>
 									</div>
 									<div class="breadcomb-ctn">
-										<h2>Manajemen Berita</h2>
+										<h2>Manajemen Khutbah</h2>
                                         <p>Selamat datang di <span class="bread-ntd">Website Dewan Masjid Indonesia</span></p>
 									</div>
 								</div>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <form action="<?= base_url('admin/simpanberita') ?>" method="post" enctype="multipart/form-data">
+                                <form action="<?= base_url('ustadz/simpanberita') ?>" method="post" enctype="multipart/form-data">
                                     <div class="form-example-int form-horizental">
                                         <div class="form-group">
                                             <div class="row">
@@ -166,4 +166,4 @@
     </div>
     <!-- Form Examples area End-->
 
-<?php $this->load->view('admin/footer'); ?>
+<?php $this->load->view('ustadz/footer'); ?>
