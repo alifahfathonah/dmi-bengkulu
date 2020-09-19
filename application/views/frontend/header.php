@@ -4,8 +4,14 @@
   <meta charset="utf-8">
   <title>Dewan Masjid Indonesia - DMI</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+  <meta name="description" content="Masjid Kota Bengkulu">
+  <meta name="robots" content="INDEX,FOLLOW"/>
+  <meta name="keyword" content="daftar, masjid, musholla, di, kota, bengkulu, profil, berdasarkan, kecamatan">
+  <meta name="og:title" property="og:title" content="Masjid Kota Bengkulu">
+  <meta name="og:type" property="og:type" content="website" />
+  <meta name="og:url" property="og:url" content="<?= base_url() ?>"/>
+  <meta name="og:image" property="og:image" content="<?= base_url() ?>" />
+  <link rel="canonical" href="<?= base_url() ?>"/>
 
   <!-- Favicons -->
   <link href="<?= base_url('assets/profil/'.$profil->logo) ?>" rel="icon">
@@ -104,8 +110,11 @@
                       <li><a href="<?= base_url('welcome/baca/adha') ?>" >Khutbah Idul Adha</a></li>
                     </ul> 
                   </li>
-                  <li class="<?php if($menu=="jadwalsholat") echo 'active' ?>">
-                    <a href="<?= base_url('welcome/jadwalsholat') ?>">Jadwal Sholat</a>
+                  <li class="dropdown <?php if($menu=="jadwal") echo 'active' ?>"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Jadwal<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="<?= base_url('welcome/jadwalsholat') ?>" >Jadwal Sholat</a></li>
+                      <li><a href="<?= base_url('welcome/jadwalkegiatan') ?>" >Jadwal Kegiatan</a></li>
+                    </ul> 
                   </li>
                   <li>
                     <a href="<?= base_url('auth') ?>">Login</a>

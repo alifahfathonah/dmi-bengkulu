@@ -346,11 +346,10 @@
   <script type="text/javascript">
       function initMap() {
           var map = new google.maps.Map(document.getElementById('map'), {
-              zoom:10,
+              zoom:15,
               maxZoom:20,
               minZoom:5,
-              center: new google.maps.LatLng(<?php echo $profil->lat.', '.$profil->lng; ?>),
-              mapTypeId: 'roadmap'
+              center: new google.maps.LatLng(<?php echo $profil->lat.', '.$profil->lng; ?>)
           });
 
           var icon="<?php echo base_url() ?>assets/mosque-pin.png";

@@ -25,6 +25,11 @@ class FrontendModel extends CI_Model {
 		return $this->db->get_where($table, $where);
 	}
 
+	public function getLike($table, $like){
+		$this->db->like('nama', $like);
+		return $this->db->get($table);
+	}
+
 	public function addWebDikunjungi(){
 		$visited = $this->db->select('total_web_dikunjungi')->get('tb_profil_dmi')->row()->total_web_dikunjungi;
 		$data['total_web_dikunjungi'] = $visited+1;
@@ -84,5 +89,23 @@ class FrontendModel extends CI_Model {
 		$this->db->join('tb_user', 'tb_user.id_user=tb_khutbah.id_user_penulis');
 		$this->db->where('tb_khutbah.id', $id);
 		return $this->db->get()->row();
+	}
+
+	public function getKhutbahByMasjid($id_masjid){
+		$this->db->select('tb_khutbah.id, tb_khutbah.judul, tb_khutbah.tgl_dibuat, tb_khutbah.deskripsi_singkat AS isi, tb_khutbah.foto');
+		$this->db->from('tb_khutbah');
+		$this->db->join('tb_pengurus_masjid', 'tb_pengurus_masjid.id_user_pengurus=tb_khutbah.id_user_penulis');
+		$this->db->where('tb_pengurus_masjid.id_masjid', $id_masjid);
+		$this->db->order_by('tgl_dibuat', 'DESC');
+		$this->db->limit(3);
+		return $this->db->get();
+	}
+
+	public function getJadwalKegiatan(){
+		$this->db->select('tb_masjid.nama, tb_kegiatan_masjid.*');
+		$this->db->from('tb_kegiatan_masjid');
+		$this->db->join('tb_masjid', 'tb_kegiatan_masjid.id_masjid=tb_masjid.id_masjid');
+		$this->db->where('tgl_kegiatan >= NOW()');
+		return $this->db->get();
 	}
 }

@@ -15,9 +15,11 @@
                 <!-- <h2 class="title3">PROVINSI BENGKULU</h2> -->
                 <div class="subs-feilds">
                   <div class="suscribe-input">
-                    <input type="email" class="email form-control width-90" id="sus_email" placeholder="NAMA MASJID">
-                    <button type="submit" id="sus_submit" class="add-btn width-10">Cari</button>
-                    <div id="msg_Submit" class="h3 text-center hidden"></div>
+                    <form action="" method="get">
+                      <input name="carimasjid" type="text" class="email form-control width-90" id="sus_email" placeholder="NAMA MASJID">
+                      <button type="submit" id="sus_submit" class="add-btn width-10">Cari</button>
+                      <div id="msg_Submit" class="h3 text-center hidden"></div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -41,7 +43,11 @@
               <div class="single-blog">
                 <div class="single-blog-img">
                   <a href="<?= base_url('welcome/detailmasjid/'.$row->id_masjid) ?>">
+                      <?php if($row->foto!=""){ ?>
                       <img src="<?= base_url('assets/masjid/'.$row->foto) ?>" alt="">
+                      <?php }else{ ?>
+                        <img src="<?= base_url('assets/masjid/illustration.jpg') ?>" alt="">
+                      <?php }?>
                     </a>
                 </div>
                 <div class="blog-meta">

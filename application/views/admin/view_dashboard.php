@@ -161,14 +161,10 @@
     <script type="text/javascript">
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoomControl:!0,
-                zoom:10,
+                zoom:12,
                 maxZoom:20,
                 minZoom:5,
-                scrollwheel:!1,
-                mapMaker:!0,
-                center: new google.maps.LatLng(<?php echo $profil->lat.', '.$profil->lng; ?>),
-                mapTypeId: 'roadmap'
+                center: new google.maps.LatLng(<?php echo $profil->lat.', '.$profil->lng; ?>)
             });
 
             var icon="<?php echo base_url() ?>assets/mosque-pin.png";
@@ -176,14 +172,15 @@
             <?php if($masjid->num_rows()>0){ ?>
 
             var features = [
-                <?php foreach($masjid->result() as $baris){?>
+                <?php foreach($masjid->result() as $baris){
+                    if($baris->lat!='' || $baris->lng!=''){?>
                 {
                     position: new google.maps.LatLng(<?php echo $baris->lat ?>, <?php echo $baris->lng ?>),
                     animation:google.maps.Animation.DROP,
                     id_masjid:"<?php echo $baris->id_masjid ?>",
                     nama:"<?php echo $baris->nama ?>"
                 },
-                <?php } ?>
+                <?php }} ?>
             ];
 
             // Create markers.
@@ -212,6 +209,15 @@
             });
 
             <?php } ?>
+
+            // var myLatLng = new google.maps.LatLng(<?php echo $profil->lat.', '.$profil->lng; ?>);
+
+            // var marker = new google.maps.Marker({
+            //     position: myLatLng,
+            //     map: map,
+            //     title: 'Sekretariat Dewan Masjid Indonesia (DMI) Kota Bengkulu',
+            //     icon: icon
+            // });
         }
     </script>
 

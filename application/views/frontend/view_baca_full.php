@@ -26,7 +26,7 @@
     <div class="container">
       <div class="row">
         <!-- Start single blog -->
-        <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="col-md-8 col-sm-8 col-xs-12"  id="printableArea">
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <!-- single-blog start -->
@@ -39,7 +39,7 @@
                   <div class="entry-meta">
                     <span class="author-meta"><i class="fa fa-user"></i> <a href="#"><?= $baca->nama_penulis ?></a></span>
                     <span><i class="fa fa-clock-o"></i> <?= date('d-m-Y H:i:s', strtotime($baca->tgl_dibuat)) ?></span>
-                    <a href="<?= base_url('welcome/downloadpdf/'.$baca->id) ?>" class="pull-right btn btn-default"><i class="fa fa-print"></i> Download PDF</a>
+                    <a  href="#" onclick="printDiv('printableArea')" class="pull-right btn btn-default"><i class="fa fa-print"></i> Cetak</a>
                   </div>
                   <div class="entry-content">
                     <?= $baca->isi ?>
@@ -51,6 +51,16 @@
             </div>
           </div>
         </div>
+
+        <script type="text/javascript">
+          function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+          }
+        </script>
 
         <?php $this->load->view('frontend/sidebar'); ?>
 

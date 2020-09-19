@@ -83,7 +83,7 @@ class Pengurus extends CI_Controller {
 
 		$config['upload_path']   = './assets/masjid/galeri/';
         $config['allowed_types'] = 'jpg|png|jpeg';
-        $config['max_size']      = 2000;
+        $config['max_size']      = 5000;
         $this->load->library('upload', $config);
 	    if ($this->upload->do_upload('foto_galeri')){
 	        $data['foto'] = $this->upload->file_name;

@@ -32,10 +32,16 @@ class Welcome extends CI_Controller {
 		$data['profil'] = $this->FrontendModel->get('tb_profil_dmi')->row();
 		$data['menu'] = 'masjid';
 		$data['tipologi'] = $tipologi;
-		if($tipologi==NULL){
-			$data['masjid'] = $this->FrontendModel->getWhere('tb_masjid', array('tipologi !='=>'Mushola'));
+		
+		$carimasjid = $this->input->get('carimasjid');
+		if(!empty($carimasjid)){
+			$data['masjid'] = $this->FrontendModel->getLike('tb_masjid', $carimasjid);
 		}else{
-			$data['masjid'] = $this->FrontendModel->getWhere('tb_masjid', array('tipologi'=>$tipologi));
+			if($tipologi==NULL){
+				$data['masjid'] = $this->FrontendModel->getWhere('tb_masjid', array('tipologi !='=>'Mushola'));
+			}else{
+				$data['masjid'] = $this->FrontendModel->getWhere('tb_masjid', array('tipologi'=>$tipologi));
+			}
 		}
 		$this->load->view('frontend/view_masjid', $data);
 	}
@@ -48,6 +54,7 @@ class Welcome extends CI_Controller {
 		$where = array('id_masjid'=>$id_masjid);
 		$data['masjid'] = $this->FrontendModel->getWhere('tb_masjid', $where)->row();
 		$data['galeri'] = $this->FrontendModel->getWhere('tb_galeri_masjid', $where);
+		$data['khutbah'] = $this->FrontendModel->getKhutbahByMasjid($id_masjid);
 		$data['kegiatan'] = $this->FrontendModel->getKegiatanByMasjid($where);
 		$data['keuangan'] = $this->FrontendModel->getKeuanganByMasjid($id_masjid);
 		$this->load->view('frontend/view_detail_masjid', $data);
@@ -106,13 +113,20 @@ class Welcome extends CI_Controller {
 	public function jadwalSholat(){
 		header("Access-Control-Allow-Origin: *");
 		$data['profil'] = $this->FrontendModel->get('tb_profil_dmi')->row();
-		$data['menu'] = 'jadwalsholat';
+		$data['menu'] = 'jadwal';
 		$data['post_terbaru'] = $this->FrontendModel->getBeritaTerbaru(5);
 		$data['arsip'] = $this->FrontendModel->getArsip();
 		$this->load->view('frontend/view_jadwal_sholat', $data);
 	}
 
-	public function downloadPDF($id_khutbah){
-
+	public function jadwalKegiatan(){
+		header("Access-Control-Allow-Origin: *");
+		$data['profil'] = $this->FrontendModel->get('tb_profil_dmi')->row();
+		$data['menu'] = 'jadwal';
+		$data['post_terbaru'] = $this->FrontendModel->getBeritaTerbaru(5);
+		$data['arsip'] = $this->FrontendModel->getArsip();
+		$data['kegiatan'] = $this->FrontendModel->getJadwalKegiatan();
+		$this->load->view('frontend/view_jadwal_kegiatan', $data);
 	}
+
 }

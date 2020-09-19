@@ -94,7 +94,7 @@
                                                             <option <?php if(isset($berita) && $berita->kategori=='Berita') echo 'selected' ?> value="Berita">Berita</option>
                                                             <option <?php if(isset($berita) && $berita->kategori=='Tausiah') echo 'selected' ?> value="Tausiah">Materi Tausiah</option>
                                                             <option <?php if(isset($berita) && $berita->kategori=='Khutbah Jumat') echo 'selected' ?> value="Khutbah Jumat">Khutbah Jumat</option>
-                                                            <option <?php if(isset($berita) && $berita->kategori=='Khutbah Idul Fitri') echo 'selected' ?> value="Fitri">Khutbah Idul Fitri</option>
+                                                            <option <?php if(isset($berita) && $berita->kategori=='Khutbah Idul Fitri') echo 'selected' ?> value="Khutbah Idul Fitri">Khutbah Idul Fitri</option>
                                                             <option <?php if(isset($berita) && $berita->kategori=='Khutbah Idul Adha') echo 'selected' ?> value="Khutbah Idul Adha">Khutbah Idul Adha</option>
                                                         </select>
                                                     </div>

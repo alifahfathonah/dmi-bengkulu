@@ -86,19 +86,19 @@
                                             <img style="height: 100px" src="<?= base_url('assets/user/'.$row->foto) ?>">
                                             <?php }else{ echo "-"; } ?></td>
                                         <td><?= $row->level ?></td>
-                                        <td><?php if($row->level=="pengurus"){ ?><span data-toggle="modal" data-target="#myModalfour<?= $i ?>">
+                                        <td><?php if($row->level!="admin"){ ?><span data-toggle="modal" data-target="#myModalfour<?= $i ?>">
                                             <a href="#" class="btn btn-sm btn-default" data-toggle="tooltip" title="Tambah Masjid"><i class="fa fa-plus"></i></a>
                                             </span><?php } ?>
                                             <span data-toggle="modal" data-target="#myModaltwo<?= $i ?>">
                                             <a href="#" class="btn btn-sm btn-default" data-toggle="tooltip" title="Ubah"><i class="fa fa-pencil"></i></a>
                                             </span>
-                                            <span data-toggle="modal" data-target="#myModalthree<?= $i++ ?>">
+                                            <span data-toggle="modal" data-target="#myModalthree<?= $i ?>">
                                             <a href="#" class="btn btn-sm btn-default" data-toggle="tooltip" title="Ubah Password"><i class="fa fa-cog"></i></a>
                                             </span>
                                             <a href="<?= base_url('admin/hapuspengguna/'.$row->id_user) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
-                                    <?php } ?>
+                                    <?php $i++; } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -352,7 +352,7 @@
                         <?php } ?>
 
                         <?php $i=0; foreach($user->result() as $row){ 
-                            if($row->level=="pengurus"){ ?>
+                            if($row->level!="admin"){ ?>
                         <div class="modal fade" id="myModalfour<?= $i ?>" role="dialog">
                             <div class="modal-dialog modals-default">
                                 <div class="modal-content">

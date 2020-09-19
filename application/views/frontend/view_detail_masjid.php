@@ -21,6 +21,7 @@
     </div>
   </div>
   <!-- END Header -->
+
   <div class="blog-page area-padding">
     <div class="container">
       <div class="row">
@@ -190,6 +191,52 @@
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="section-headline text-center">
+              <h2>Khutbah Masjid</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+          <?php foreach($khutbah->result() as $row){ ?>
+          <!-- Start Left Blog -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="single-blog">
+              <div class="single-blog-img">
+                <a href="#">
+                  <img src="<?= base_url('assets/berita/'.$row->foto) ?>" alt="">
+                </a>
+              </div>
+              <div class="blog-meta">
+                <span class="date-type">
+                  <i class="fa fa-calendar"></i><?= date('d-m-Y H:i:s', strtotime($row->tgl_dibuat)) ?>
+                </span>
+              </div>
+              <div class="blog-text">
+                <h4>
+                  <a href="#"><?= $row->judul ?></a>
+                </h4>
+                <p><?= $row->isi ?></p>
+              </div>
+            </div>
+            <!-- Start single blog -->
+          </div>
+          <!-- End Left Blog-->
+          <?php } ?>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Blog -->
+
+  <!-- Start Blog Area -->
+  <div id="berita" class="about-area area-padding">
+    <div class="blog-inner area-padding">
+      <div class="blog-overly"></div>
+      <div class="container ">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="section-headline text-center">
               <h2>Kegiatan Masjid</h2>
             </div>
           </div>
@@ -278,23 +325,39 @@
   <!-- Google Maps -->
   <script type="text/javascript">
       function initMap() {
+        <?php if($masjid->lat!='' || $masjid->lng!=''){ ?>
           var map = new google.maps.Map(document.getElementById('map'), {
-              zoom:10,
+              zoom:15,
+              maxZoom:20,
+              minZoom:5,
+              center: new google.maps.LatLng(<?php echo $masjid->lat.', '.$masjid->lng; ?>),
+              mapTypeId: 'roadmap'
+          });
+          var icon="<?php echo base_url() ?>assets/mosque-pin.png";
+
+          var myLatLng = new google.maps.LatLng(<?php echo $masjid->lat.', '.$masjid->lng; ?>);
+          var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: '<?= $masjid->nama ?>',
+            icon: icon
+          });
+        <?php } else{ ?>
+          var map = new google.maps.Map(document.getElementById('map'), {
+              zoom:15,
               maxZoom:20,
               minZoom:5,
               center: new google.maps.LatLng(<?php echo $profil->lat.', '.$profil->lng; ?>),
               mapTypeId: 'roadmap'
           });
-
-          var icon="<?php echo base_url() ?>assets/mosque-pin.png";
           var myLatLng = new google.maps.LatLng(<?php echo $profil->lat.', '.$profil->lng; ?>);
-
           var marker = new google.maps.Marker({
             position: myLatLng,
             map: map,
             title: 'Sekretariat Dewan Masjid Indonesia (DMI) Kota Bengkulu',
             icon: icon
           });
+        <?php }?>
       }
   </script>
 

@@ -227,6 +227,7 @@ class Admin extends CI_Controller {
 	        $uploadsucces=true;
 	    }else{
 	    	$uploadsucces=false;
+	    	$this->session->set_flashdata('info', 'Gagal upload gambar. Pastikan ukuran file gambar maskimal 5MB dan file berekstensi .png/.jpg/.jpeg');
 	    }
 
 	    if(empty($id_masjid)){
@@ -277,7 +278,7 @@ class Admin extends CI_Controller {
 
 		$config['upload_path']   = './assets/masjid/galeri/';
         $config['allowed_types'] = 'jpg|png|jpeg';
-        $config['max_size']      = 2000;
+        $config['max_size']      = 5000;
         $this->load->library('upload', $config);
 	    if ($this->upload->do_upload('foto_galeri')){
 	        $data['foto'] = $this->upload->file_name;
@@ -289,7 +290,7 @@ class Admin extends CI_Controller {
 				$this->session->set_flashdata('error', 'Gagal menambah galeri masjid');
 			}
 	    }else{
-	    	$this->session->set_flashdata('error', 'Gagal menambah galeri. Pastikan kuran file maksimal foto 2MB dan berekstensi .jpg atau .png');
+	    	$this->session->set_flashdata('error', 'Gagal menambah galeri. Pastikan kuran file maksimal foto 5MB dan berekstensi .jpg atau .png');
 	    }
 		redirect(base_url('admin/detailMasjid/'.$id_masjid));
 	}
